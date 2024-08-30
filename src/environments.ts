@@ -1,16 +1,11 @@
 import inquirer from 'inquirer'
 import { globalStateMachine } from './state-machine'
-import { EnumLayoutType, EnumProcessManager } from './types'
-
-export const enumMethod = (enu): string[] => {
-  const array: string[] = []
-  for (let item in enu) {
-    if (isNaN(Number(item))) {
-      array.push(item)
-    }
-  }
-  return array
-}
+import {
+  EnumAuthorizationType,
+  EnumLayoutType,
+  EnumProcessManager,
+} from './types'
+import enumMethod from './utils/enum-method.util'
 
 export async function getGlobalEnvironment(): Promise<boolean> {
   // @ts-ignore
@@ -26,6 +21,13 @@ export async function getGlobalEnvironment(): Promise<boolean> {
       name: 'pm',
       message: 'Which package manager would you to use? 📂',
       choices: enumMethod(EnumProcessManager),
+    },
+    {
+      type: 'list',
+      name: 'authorizationType',
+      message: 'What type of authorization do you want to use? 🔑',
+      // choices: ['🔓None', '🔒Default', '🔐Perfect'],
+      choices: enumMethod(EnumAuthorizationType),
     },
   ])
 

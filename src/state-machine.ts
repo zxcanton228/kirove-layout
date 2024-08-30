@@ -9,8 +9,8 @@ import {
 export const globalStateMachine: IStateMachine = {
   processManager: EnumProcessManager.yarn,
   layoutType: EnumLayoutType.backend,
+  authorizationType: EnumAuthorizationType.none,
 }
 export const backendStateMachine: IBackendStateMachine = {
   isDependenciesInstalled: false,
-  authorizationType: EnumAuthorizationType.none,
 }

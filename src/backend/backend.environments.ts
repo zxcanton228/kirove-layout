@@ -1,12 +1,8 @@
-import inquirer from 'inquirer'
-import { authorizationPrompt } from './../environments'
-import { backendStateMachine } from './../state-machine'
-
 export async function getBackendEnvironment(): Promise<boolean> {
   // @ts-ignore
-  const { authorizationType } = await inquirer.prompt(authorizationPrompt)
+  // const { authorizationType } = await inquirer.prompt()
 
-  backendStateMachine.authorizationType = authorizationType
+  // backendStateMachine.authorizationType = authorizationType
 
   return true
 }

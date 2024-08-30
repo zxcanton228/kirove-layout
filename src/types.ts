@@ -17,8 +17,8 @@ export enum EnumAuthorizationType {
 export interface IStateMachine {
   processManager: EnumProcessManager
   layoutType: EnumLayoutType
+  authorizationType: EnumAuthorizationType
 }
 export interface IBackendStateMachine {
   isDependenciesInstalled: boolean
-  authorizationType: EnumAuthorizationType
 }

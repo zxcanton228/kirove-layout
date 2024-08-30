@@ -1,22 +1,26 @@
 import { getBackendEnvironment } from './backend/backend.environments'
 import { getGlobalEnvironment } from './environments'
 import { getFrontendEnvironment } from './frontend/frontend.environments'
-import logger from './logger/logger'
 import { globalStateMachine } from './state-machine'
 import { EnumLayoutType } from './types'
+import logger from './utils/logger/logger'
 
 async function bootstrap() {
   await getGlobalEnvironment()
 
   console.log(globalStateMachine.layoutType)
 
-  if (globalStateMachine.layoutType === EnumLayoutType.backend) {
-    await getBackendEnvironment()
-  } else if (globalStateMachine.layoutType === EnumLayoutType.frontend) {
-    await getFrontendEnvironment()
-    return
-  } else {
-    throw new Error('Layout type is not passed')
+  switch (globalStateMachine.layoutType) {
+    case EnumLayoutType.backend:
+      await getBackendEnvironment()
+      logger.system('backend')
+      break
+    case EnumLayoutType.frontend:
+      await getFrontendEnvironment()
+      logger.system('frontend')
+      break
+    default:
+      throw new Error('Layout type is not passed')
   }
 }
 
