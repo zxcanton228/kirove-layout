@@ -1,10 +1,11 @@
+// @ts-ignore
 const enumMethod = (enu): string[] => {
-  const array: string[] = []
-  for (let item in enu) {
-    if (isNaN(Number(item))) {
-      array.push(item)
-    }
-  }
-  return array
+	const array: string[] = []
+	for (let item in enu) {
+		if (isNaN(Number(item))) {
+			array.push(item)
+		}
+	}
+	return array
 }
 export default enumMethod
