@@ -1,35 +1,30 @@
-import { getBackendEnvironment } from "./backend/backend.environments"
-import { getFrontendEnvironment } from "./frontend/frontend.environments"
-import { getGlobalEnvironment } from "./get-environments"
-import { globalStateMachine } from "./state-machine"
-import { EnumLayoutType } from "./types/types"
-import logger from "./utils/logger/logger"
+import { getGlobalEnvironment } from './get-environments'
+import { globalStateMachine } from './state-machine'
+import { EnumLayoutType } from './types/types'
+import logger from './utils/logger/logger'
 async function bootstrap() {
 	await getGlobalEnvironment()
 
-	console.log(globalStateMachine.layoutType)
-
 	switch (globalStateMachine.layoutType) {
 		case EnumLayoutType.backend:
-			await getBackendEnvironment()
-			logger.system("backend")
+			const backend = (await import('./backend/backend')).default
+			await backend()
 			break
 		case EnumLayoutType.frontend:
-			await getFrontendEnvironment()
-			logger.system("frontend")
+			const frontend = (await import('./frontend/frontend')).default
+			await frontend()
 			break
 		default:
-			throw new Error("Layout type is not passed")
+			throw new Error('Layout type is not passed')
 	}
-	console.log(globalStateMachine)
 }
 
 bootstrap()
 	.then(() =>
-		console.log(logger.success("The template has been successfully created!"))
+		console.log(logger.success('The template has been successfully created!'))
 	)
 	.catch(error => {
 		console.error(logger.error(error))
 		process.exit(1)
 	})
-	.finally(() => console.log(logger.system("Process finished", "⏸️ ")))
+	.finally(() => console.log(logger.system('Process finished', '⏸️ ')))

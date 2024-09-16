@@ -1,21 +1,24 @@
+import appRootPath from 'app-root-path'
 import {
 	EnumAuthorizationType,
 	EnumLayoutType,
-	EnumProcessManager,
-	type IBackendStateMachine,
+	EnumPackageManager,
 	type IStateMachine,
-} from "./types/types"
+} from './types/types'
+import isDev from './utils/env/isDev'
 
 export const globalStateMachine: IStateMachine = {
-	projectName: "test-project",
-	processManager: EnumProcessManager.yarn,
-	programPath: "C:\\Users\\kiril\\Desktop\\kirove-layout",
+	projectName: 'test-project',
+	packageManager: EnumPackageManager.yarn,
+
+	programPath: isDev ? appRootPath.toString() : process.argv.slice(2)[0],
+	assetsPath: appRootPath.toString() + '/assets',
 
 	layoutType: EnumLayoutType.backend,
 
 	authorizationType: EnumAuthorizationType.none,
-	jwtSecret: "",
+	jwtSecret: '',
 }
-export const backendStateMachine: IBackendStateMachine = {
-	isDependenciesInstalled: false,
-}
+// export const backendStateMachine: IBackendStateMachine = {
+// 	isDependenciesInstalled: false,
+// }

@@ -1,6 +1,6 @@
 {
 	"name": "kirove-layout",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"main": "src/main.ts",
 	"private": false,
 	"license": "MIT",
@@ -43,8 +43,8 @@
 		"tsconfig-paths": "^4.2.0"
 	},
 	"engines": {
-		"node": "22.2.0",
-		"npm": "10.8.0",
-		"yarn": "1.22.19"
+		"node": ">=22.2.0",
+		"npm": ">=10.8.0",
+		"yarn": ">=1.22.19"
 	}
 }
