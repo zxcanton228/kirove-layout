@@ -1,6 +1,6 @@
 /**
  * TODO:
- * [] - Install node_modules Service
+ * [] - Node_modules Service
  * [] - Services directory
  * [] - Environments configuration Service
  *

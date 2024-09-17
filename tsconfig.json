@@ -4,11 +4,11 @@
 		"module": "commonjs",
 		"lib": ["ES2021"],
 		"baseUrl": "./",
-		"paths": {
-			"src/*": ["src/*"],
-			"utils/*": ["src/utils/*"],
-			"types/*": ["src/types/*"]
-		},
+		// "paths": {
+		// 	"src/*": ["src/*"],
+		// 	"utils/*": ["src/utils/*"],
+		// 	"types/*": ["src/types/*"]
+		// },
 		"outDir": "dist",
 		"esModuleInterop": true
 	},

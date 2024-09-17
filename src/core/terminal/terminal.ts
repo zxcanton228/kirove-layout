@@ -1,28 +1,21 @@
-interface ITerminalProps {
-	command: string
-	onSuccess?: () => void
-	onError?: () => void
-}
+import { bgRedBright, white } from 'chalk'
+import { exec } from 'child_process'
+import isDev from './../../utils/env/isDev'
 /**
  * The usual use of the command in the terminal using exec
- * @param {object} {
-	command,
-	onError,
-	onSuccess,
-} - params
+ * @param {string} command - Command
  */
-const terminal = async ({
-	command,
-	onError,
-	onSuccess,
-}: ITerminalProps): Promise<boolean /* ITerminal */> => {
-	const { exec } = (await import('child_process')).default
-	const child = exec(
-		command,
-		err => err && console.error('Terminal error: ' + err)
-	)
-	onSuccess && child.on('exit', onSuccess)
-	onError && child.on('error', onError)
-	return true
+const terminal = async (command: string): Promise<void> => {
+	return new Promise((resolve, reject) => {
+		exec(command, error => {
+			if (error) {
+				console.error(bgRedBright(white('🛑Terminal error: ' + error)))
+				reject(error)
+			} else {
+				isDev && console.log('✅Command ready!')
+				resolve()
+			}
+		})
+	})
 }
 export default terminal
