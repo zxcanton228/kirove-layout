@@ -5,13 +5,7 @@
 		"lib": ["ES2021"],
 
 		// Alias
-		"baseUrl": "./",
-		"paths": {
-			"src/*": ["src/*"],
-			"utils/*": ["src/utils/*"],
-			"types/*": ["src/types/*"],
-			"core/*": ["src/core/*"]
-		},
+
 		"outDir": "dist",
 
 		// WebPack

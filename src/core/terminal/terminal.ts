@@ -7,12 +7,14 @@ import isDev from './../../utils/env/isDev'
  */
 const terminal = async (command: string): Promise<void> => {
 	return new Promise((resolve, reject) => {
-		exec(command, error => {
+		exec(command, (error, stdout) => {
 			if (error) {
 				console.error(bgRedBright(white('🛑Terminal error: ' + error)))
 				reject(error)
 			} else {
-				isDev && console.log('✅Command ready!')
+				if (isDev) {
+					console.log(stdout)
+				}
 				resolve()
 			}
 		})
