@@ -17,17 +17,14 @@ async function bootstrap() {
 			const frontend = (await import('./frontend/frontend')).default
 			await frontend()
 			break
-		default:
-			throw new Error('Layout type is not passed')
 	}
 }
 
-bootstrap()
-	.then(() =>
-		console.log(logger.success('The template has been successfully created!'))
-	)
-	.catch(error => {
-		console.error(logger.error(error))
-		process.exit(1)
-	})
-	.finally(() => console.log(logger.system('Process finished', '⏸️ ')))
+bootstrap().catch(error => {
+	console.error(logger.error(error))
+	process.exit(1)
+})
+// .then(() =>
+// 	console.log(logger.success('The template has been successfully created!'))
+// )
+// .finally(() => console.log(logger.system('Process finished', '⏸️ ')))
