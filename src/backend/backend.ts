@@ -1,10 +1,16 @@
-import terminal from 'src/core/terminal/terminal'
-import { globalStateMachine } from 'src/state-machine'
+import appRootPath from 'app-root-path'
+import { access } from 'fs-extra'
+import terminal from './../core/terminal/terminal'
+import { globalStateMachine } from './../state-machine'
 
-export default async function backend() {
+export default async function backend(): Promise<boolean> {
 	const { packageManager, projectName } = globalStateMachine
-	terminal({
-		command: `nest new ${projectName} -s -g -p ${packageManager}`,
+	await terminal(`nest new ${projectName} -s -g -p ${packageManager}`)
+
+	access(appRootPath + '/test-project', err => {
+		if (err) console.error(err)
+		console.log('Yes')
 	})
-	// More code
+
+	return true
 }

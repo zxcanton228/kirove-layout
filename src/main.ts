@@ -1,8 +1,11 @@
 import { getGlobalEnvironment } from './get-environments'
 import { globalStateMachine } from './state-machine'
 import { EnumLayoutType } from './types/types'
+import isDev from './utils/env/isDev'
 import logger from './utils/logger/logger'
+import remDir from './utils/remdir.util'
 async function bootstrap() {
+	isDev && remDir()
 	await getGlobalEnvironment()
 
 	switch (globalStateMachine.layoutType) {

@@ -1,6 +1,9 @@
 # Logs
 .env
 TODO.js
+webpack.config.js
+webpack.config.ts
+test-project
 
 logs
 *.log

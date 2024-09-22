@@ -3,15 +3,26 @@
 		"target": "ES2021",
 		"module": "commonjs",
 		"lib": ["ES2021"],
+
+		// Alias
 		"baseUrl": "./",
-		// "paths": {
-		// 	"src/*": ["src/*"],
-		// 	"utils/*": ["src/utils/*"],
-		// 	"types/*": ["src/types/*"]
-		// },
+		"paths": {
+			"src/*": ["src/*"],
+			"utils/*": ["src/utils/*"],
+			"types/*": ["src/types/*"],
+			"core/*": ["src/core/*"]
+		},
 		"outDir": "dist",
-		"esModuleInterop": true
+
+		// WebPack
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
 	},
 	"include": ["src"],
-	"exclude": ["node_modules", "dist"]
+	"exclude": ["node_modules"]
 }
